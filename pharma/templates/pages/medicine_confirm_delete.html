@@ -1,0 +1,14 @@
+{% extends 'pages/index.html' %} 
+{% load static %}
+
+{% block content %}
+
+<h2>Confirm deletion</h2>
+<p>Are you sure you want to delete "{{ medicine.name }}"?</p>
+<form method="post" action="{% url 'delete_medicine' medicine_id=medicine.medicine_id %}">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>
+
+</form>
+{% endblock %}

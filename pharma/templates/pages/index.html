@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'pharma/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'pharma/css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'pharma/css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'pharma/css/images/favicon2.ico' %}"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+            integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy"
+            crossorigin="anonymous"></script>
+    
+</head>
+<body>
+    {% include 'pages/nav.html' %} 
+    {% block content %} 
+    {% endblock %} 
+    {%include 'pages/footer.html'%}
+</body>
+<script type="text/javascript" src="{% static 'pharma/js/npm.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pharma/js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pharma/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pharma/js/script.js' %}"></script>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'pages/Index.html' %}
+
+{% block content %}
+    
+    <body>
+        <div class="container-fluid martop7">
+            <div class="jumbotron jumcust">
+                <h2>Customer Table</h2>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <a href="{% url 'add_customer' %}" class="delbut btn btn-primary">ADD</a>
+                    
+                    <table border="1" class="table table-responsive table-hover col-md-10">
+                        <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Address</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                                <tr>
+                                    <td>{{ customer.first_name }}</td>
+                                    <td>{{ customer.last_name }}</td>
+                                    <td>{{ customer.address }}</td>
+                                    <td>{{ customer.phone_number }}</td>
+                                    <td>{{ customer.email }}</td>
+                                    <td>
+                                        <a href="{% url 'edit_customer' customer.id %}" class="delbut btn btn-warning">Edit</a>
+                                        {% if customer.id %}
+                                            <a href="{% url 'delete_customer' customer.id %}" class="delbut btn btn-danger">Delete</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer><h3>Click on a Customer ID to Update or Delete the record.</h3></footer>
+            </div>
+        </div>
+    </body>
+{% endblock %}

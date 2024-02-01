@@ -1,0 +1,67 @@
+{% extends 'pages/index.html' %} 
+{% load static %}
+
+{% block content %}
+    <title>All Dealer Details</title>
+</head>
+<body>
+
+    <div class="container-fluid martop7">
+        <div class="jumbotron jumcust">
+            <h2>Dealer Details</h2>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <a href="{% url 'dealerforminsert' %}" class="delbut btn btn-primary">ADD</a>
+    
+             
+                    <table border="1" class="table table-responsive table-hover col-md-10">
+                        <tr>
+                           
+                            <th>Dealer ID</th>
+                            <th>Dealer Name</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Email</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+    
+                        {% for dealer in dealers %}
+                            <tr>
+                                
+                                <td>Dealer {{ dealer.id }}</td>
+                                <td>{{ dealer.name }}</td>
+                                <td>{{ dealer.address }}</td>
+                                <td>{{ dealer.phone_number }}</td>
+                                <td>{{ dealer.email }}</td>
+                                <td>
+                                    <!-- Add the link to the edit view -->
+                                    <a href="{% if dealer.id %}{% url 'edit_dealer' dealer.id %}{% endif %}" class="delbut btn btn-warning">Edit</a>
+                                </td>
+                                <td>
+                                        <form method="post" action="{% url 'delete_dealer' dealer.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="delbut btn btn-danger">Delete</button>
+                                        </form>
+                                    
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+            <footer><h3>Click on a Dealer ID to Update or Delete the record.</h3></footer>
+        </div>
+    </div>
+    
+     
+<footer id="contact" class="container-fluid text-center">
+    <div class="row">
+        <div class="left-footer col-lg-6">
+            <span class="footer-text">Have any queries? Contact me via email on darren.bisin@cvsu.edu.ph</span>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="right-footer col-lg-2"></div>
+    </div>
+</footer>
+</body>
+{% endblock %}

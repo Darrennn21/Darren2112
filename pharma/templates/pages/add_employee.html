@@ -1,0 +1,15 @@
+{% extends 'pages/index.html' %} 
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid martop7">
+        <div class="jumbotron jumcust">
+            <h2>Add Employee</h2>
+            <form method="post" action="{% url 'add_employee' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Add Employee</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

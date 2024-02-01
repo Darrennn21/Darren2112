@@ -1,0 +1,53 @@
+{% extends 'pages/index.html' %} 
+{% load static %}
+
+{% block content %}
+    <html>
+        <head>
+            <title>All Medicine Details</title>
+        </head>
+        <body>
+            <div class="container-fluid martop7">
+                <div class="jumbotron jumcust">
+                    <h2>Medicine Details</h2>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <a href="{% url 'medAdd' %}" class="delbut btn btn-primary">ADD</a>
+
+                        <table border="1" class="table table-responsive table-hover col-md-10">
+                            <tr>
+                           
+                                <th>Medicine Code</th>
+                                <th>Medicine Name</th>
+                                <th>Dealer Name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            {% for medicine in medicines %}
+                                <tr>
+                                    
+                                    <td>Medicine {{ medicine.medicine_id }}</td>
+                                    <td>{{ medicine.name }}</td>
+                                    <td>{{ medicine.dealer }}</td>
+                                    <td>{{ medicine.description }}</td>
+                                    <td>{{ medicine.price }}</td>
+                                    <td>{{ medicine.stock }}</td>   
+                                    <td>
+                                        <a href="{% url 'edit_medicine' medicine.medicine_id %}" class="delbut btn btn-warning">Edit</a>
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'delete_medicine' medicine.medicine_id %}" class="delbut btn btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <footer><h3>Click on a Medicine ID to Update or Delete the record.</h3></footer>
+                </div>
+            </div>
+        </body>
+    </html>
+{% endblock %}

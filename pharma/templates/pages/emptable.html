@@ -1,0 +1,50 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    <div class="container-fluid martop7">
+        <div class="jumbotron jumcust">
+            <h2>Employee Details</h2>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <a href="{% url 'add_employee' %}" class="delbut btn btn-primary">ADD</a>
+                
+                <table border="1" class="table table-responsive table-hover col-md-10">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Salary</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for employee in employees %}
+                        <tr>
+                            <td>Employee {{ employee.employee_id }}</td>
+                            <td>{{ employee.first_name }}</td>
+                            <td>{{ employee.last_name }}</td>
+                            <td>{{ employee.address }}</td>
+                            <td>{{ employee.phone_number }}</td>
+                            <td>{{ employee.email }}</td>
+                            <td>{{ employee.salary }}</td>
+                            <td>
+                                <a href="{% url 'edit_employee' employee.employee_id %}" class="delbut btn btn-warning">Edit</a>
+                            </td>
+                            <td>
+                                {% if employee.employee_id %}
+                                    <a href="{% url 'delete_employee' employee.employee_id %}" class="delbut btn btn-danger">Delete</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <footer><h3>Click on an Employee ID to Update or Delete the record.</h3></footer>
+        </div>
+    </div>
+</body>
+{% endblock %}

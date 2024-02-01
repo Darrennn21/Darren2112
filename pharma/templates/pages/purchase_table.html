@@ -1,0 +1,44 @@
+{% extends 'pages/index.html' %} 
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid martop7">
+        <div class="jumbotron jumcust">
+            <h2>Purchase Details</h2>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <a href="{% url 'add_purchase' %}" class="delbut btn btn-primary">ADD</a>
+
+                <table border="1" class="table table-responsive table-hover col-md-10">
+                    <tr>
+                        <th>Purchase ID</th>
+                        <th>Customer Name</th>
+                        <th>Medicine Name</th>
+                        <th>Employee Name</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                     {% for purchase in purchases %}
+                        <tr>
+                            <td>{{ purchase.id }}</td>
+                            <td>{{ purchase.customer.first_name }} {{ purchase.customer.last_name }}</td>
+                            <td>{{ purchase.medicine.name }}</td>
+                            <td>{{ purchase.employee.first_name }} {{ purchase.employee.last_name }}</td>
+                            <td>{{ purchase.quantity }}</td>
+                            <td>{{ purchase.total_price }}</td>   
+                            <td>
+                                <a href="{% url 'edit_purchase' purchase.id %}" class="delbut btn btn-warning">Edit</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'delete_purchase' purchase.id %}" class="delbut btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <footer><h3>Click on a Purchase ID to Update or Delete the record.</h3></footer>
+        </div>
+    </div>
+{% endblock %}

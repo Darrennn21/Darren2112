@@ -1,0 +1,12 @@
+{% extends 'pages/index.html' %} 
+{% load static %}
+
+{% block content %}
+
+<h2>Confirm deletion</h2>
+<p>Are you sure you want to delete "{{ dealer.name }}"?</p>
+<form method="post" action="{% url 'dealer_delete' pk=dealer.pk %}">
+  {% csrf_token %}
+  <button type="submit">Yes, delete</button>
+</form>
+{% endblock %}
